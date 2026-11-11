@@ -1,0 +1,39 @@
+# .NET / Visual Studio
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+*.suo
+*.userprefs
+TestResults/
+coverage/
+
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vite/
+.output/
+
+# Environment / Secrets
+.env
+.env.*.local
+*.pfx
+*.pem
+appsettings.*.local.json
+secrets.json
+
+# Operating System
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+.DS_Store
+
+# Logs
+*.log
+!evidence/**/*.log

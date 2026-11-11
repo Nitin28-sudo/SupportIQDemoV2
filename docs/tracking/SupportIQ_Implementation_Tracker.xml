@@ -1,0 +1,863 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Title>SupportIQ .NET 10 Implementation &amp; Evidence Tracker</Title>
+  <Subject>SupportIQ Architecture and Implementation Plan Tracker (.NET 10 Web API)</Subject>
+  <Author>SupportIQ Engineering</Author>
+  <Created>2026-11-11T18:00:00Z</Created>
+ </DocumentProperties>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="Segoe UI" ss:Size="10" ss:Color="#0F172A"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="HeaderStyle">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2" ss:Color="#1E293B"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#CBD5E1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#CBD5E1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#CBD5E1"/>
+   </Borders>
+   <Font ss:FontName="Segoe UI" ss:Size="11" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Interior ss:Color="#0F172A" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="PhaseHeader">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#94A3B8"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#94A3B8"/>
+   </Borders>
+   <Font ss:FontName="Segoe UI" ss:Size="11" ss:Color="#1E293B" ss:Bold="1"/>
+   <Interior ss:Color="#E2E8F0" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="DataCell">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#E2E8F0"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#E2E8F0"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#E2E8F0"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#E2E8F0"/>
+   </Borders>
+   <Font ss:FontName="Segoe UI" ss:Size="10"/>
+  </Style>
+  <Style ss:ID="StatusNotStarted">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#CBD5E1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#CBD5E1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#CBD5E1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#CBD5E1"/>
+   </Borders>
+   <Font ss:FontName="Segoe UI" ss:Size="10" ss:Color="#475569" ss:Bold="1"/>
+   <Interior ss:Color="#F1F5F9" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="StatusVerified">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A7F3D0"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A7F3D0"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A7F3D0"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#A7F3D0"/>
+   </Borders>
+   <Font ss:FontName="Segoe UI" ss:Size="10" ss:Color="#065F46" ss:Bold="1"/>
+   <Interior ss:Color="#D1FAE5" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="CodeText">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#E2E8F0"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#E2E8F0"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#E2E8F0"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#E2E8F0"/>
+   </Borders>
+   <Font ss:FontName="Consolas" ss:Size="9.5" ss:Color="#0369A1"/>
+  </Style>
+ </Styles>
+
+ <!-- Sheet 1: Master Phase & Task Tracker (.NET 10) -->
+ <Worksheet ss:Name="Phase_SubPhase_Tracker">
+  <Table ss:DefaultRowHeight="24">
+   <Column ss:Width="65"/>
+   <Column ss:Width="190"/>
+   <Column ss:Width="95"/>
+   <Column ss:Width="210"/>
+   <Column ss:Width="75"/>
+   <Column ss:Width="230"/>
+   <Column ss:Width="95"/>
+   <Column ss:Width="270"/>
+   <Column ss:Width="270"/>
+   <Column ss:Width="250"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="90"/>
+   
+   <Row ss:Height="30">
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Phase ID</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Phase Name</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Sub-Phase ID</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Sub-Phase Name</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Task ID</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Task Title</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">PRD Reference</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Target Code Files</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Verification Command</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Evidence Artifact Path</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Status</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Owner</Data></Cell>
+   </Row>
+
+   <!-- Phase 1 (.NET) -->
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-01</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">.NET Architecture &amp; Multi-Tenant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-01.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Solution Scaffolding &amp; Contracts</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-01.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">.NET 10 Clean Architecture Scaffolding</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Section 3, 10</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">SupportIQ.sln, src/SupportIQ.*, tests/SupportIQ.*</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test SupportIQ.sln</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-1/1.1-solution-scaffold.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">.NET Lead</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-01</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">.NET Architecture &amp; Multi-Tenant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-01.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Solution Scaffolding &amp; Contracts</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-01.1.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Standard ApiResponse Envelope &amp; FluentValidation</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Section 8</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Application/Common/Models/ApiResponse.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter ApiResponseTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-1/1.1-api-envelope.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Backend Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-01</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">.NET Architecture &amp; Multi-Tenant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-01.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EF Core Multi-Tenant Persistence</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-01.2.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Domain Entities &amp; ITenantScoped Contract</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Section 7</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Domain/Entities/*.cs, ITenantScoped.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter EntityDefinitionTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-1/1.2-domain-entities.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Backend Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-01</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">.NET Architecture &amp; Multi-Tenant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-01.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EF Core Multi-Tenant Persistence</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-01.2.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EF Core Global Query Filters &amp; Tenant Provider</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-OP-01</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Infrastructure/Persistence/SupportIQDbContext.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.IntegrationTests/ --filter TenantIsolationTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-1/1.2-tenant-isolation.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Security Eng</Data></Cell>
+   </Row>
+
+   <!-- Phase 2 (.NET) -->
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-02</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Knowledge Ingestion Pipeline</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-02.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">File Ingestion &amp; Azure Blob</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-02.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Document Magic Bytes &amp; Azure Storage</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-KB-01, FR-KB-02</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Infrastructure/Services/DocumentValidator.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter DocumentValidatorTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-2/2.1-document-validation.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Backend Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-02</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Knowledge Ingestion Pipeline</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-02.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Multi-Format Text Extraction</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-02.2.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PdfPig &amp; OpenXml Text Extraction Service</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-KB-04, FR-KB-08</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Infrastructure/Extraction/TextExtractionService.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter TextExtractionTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-2/2.2-text-extraction.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-02</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Knowledge Ingestion Pipeline</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-02.3</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Sliding Chunker &amp; Vector Store</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-02.3.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Token-Aware Chunker &amp; pgvector Indexing</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-KB-04</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Infrastructure/Ai/ChunkingService.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter ChunkingTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-2/2.3-chunking-vector.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-02</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Knowledge Ingestion Pipeline</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-02.4</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Document Lifecycle &amp; Deletion</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-02.4.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Knowledge Controller &amp; Ingestion Lifecycle</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-KB-05, FR-KB-06, FR-KB-07</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Api/Controllers/KnowledgeController.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.IntegrationTests/ --filter KnowledgeControllerTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-2/2.4-knowledge-lifecycle.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Backend Eng</Data></Cell>
+   </Row>
+
+   <!-- Phase 3 (.NET) -->
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-03</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Grounded RAG Assistant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-03.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Hybrid Retrieval Engine</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-03.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Hybrid Vector + BM25 Retrieval Service</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-CA-02, FR-OP-01</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Infrastructure/Ai/HybridRetrievalService.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter HybridRetrievalTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-3/3.1-hybrid-retrieval.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-03</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Grounded RAG Assistant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-03.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Grounded Prompting &amp; Abstention</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-03.2.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Grounded Chat &amp; Mandatory Canonical Abstention</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-CA-03, FR-CA-04</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Infrastructure/Ai/GroundedChatService.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter GroundedChatTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-3/3.2-grounding-abstention.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-03</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Grounded RAG Assistant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-03.3</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Conversation History &amp; Feedback</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-03.3.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Chat Session Controller &amp; Feedback Endpoints</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-CA-05, FR-CA-06, FR-CA-07</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Api/Controllers/ChatController.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.IntegrationTests/ --filter ChatControllerTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-3/3.3-chat-feedback.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Backend Eng</Data></Cell>
+   </Row>
+
+   <!-- Phase 4 (.NET) -->
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-04</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Ticket Intelligence &amp; Copilot</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-04.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Ticket Queue &amp; Lifecycle</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-04.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Paginated Ticket Queue Controller &amp; Queries</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-TK-01</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Api/Controllers/TicketsController.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.IntegrationTests/ --filter TicketsControllerTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-4/4.1-ticket-queue.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Backend Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-04</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Ticket Intelligence &amp; Copilot</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-04.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Structured Ticket Intelligence</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-04.2.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Summarization &amp; JSON Schema Classification</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-TK-02, FR-TK-03, FR-TK-04</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Application/Features/Tickets/Services/TicketIntelligenceService.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter TicketIntelligenceTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-4/4.2-ticket-intelligence.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-04</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Ticket Intelligence &amp; Copilot</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-04.3</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Agent Copilot &amp; Review Flow</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-04.3.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Grounded Reply Draft &amp; Human Review Action</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-AC-01, FR-AC-05, FR-AC-06</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Application/Features/Tickets/Services/CopilotService.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.IntegrationTests/ --filter CopilotReviewTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-4/4.3-copilot-review.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Fullstack Eng</Data></Cell>
+   </Row>
+
+   <!-- Phase 5 (.NET) -->
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-05</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Sandboxed Tools &amp; Telemetry</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-05.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Sandboxed Tool Execution</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-05.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Allowlisted Tool Registry &amp; Boundary Guard</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-WF-01, FR-WF-02, FR-WF-03</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Application/Features/Tools/Services/ToolRegistryService.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter ToolRegistryTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-5/5.1-sandboxed-tools.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Security Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-05</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Sandboxed Tools &amp; Telemetry</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-05.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Audit Logging &amp; Sanitization</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-05.2.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Immutable Tool Audit &amp; Exception Sanitizer</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-WF-05, FR-WF-06, FR-OP-05</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Infrastructure/Logging/ToolAuditLogger.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.UnitTests/ --filter ToolAuditLoggerTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-5/5.2-audit-telemetry.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Platform Eng</Data></Cell>
+   </Row>
+
+   <!-- Phase 6 -->
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-06</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Precision Console Frontend</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-06.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Precision Shell &amp; Tokens</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-06.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Console Shell Navigation &amp; Theme Tokens</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">DESIGN.md</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">client/src/components/layout/ConsoleShell.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">pnpm --filter client test tests/ConsoleShell.test.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-6/6.1-ui-shell.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Frontend Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-06</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Precision Console Frontend</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-06.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Knowledge Management UI</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-06.2.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Document Upload Dropzone &amp; Explorer</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-KB-01, FR-KB-05</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">client/src/views/KnowledgeView.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">pnpm --filter client test tests/KnowledgeView.test.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-6/6.2-knowledge-ui.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Frontend Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-06</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Precision Console Frontend</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-06.3</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">RAG Assistant Chat UI</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-06.3.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Interactive Chat Console &amp; Citation Drawer</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-CA-01, FR-CA-03</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">client/src/components/chat/ChatContainer.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">pnpm --filter client test tests/ChatContainer.test.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-6/6.3-chat-ui.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Frontend Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-06</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Precision Console Frontend</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-06.4</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Ticket Workbench &amp; Copilot UI</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-06.4.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Side-by-Side Ticket Detail &amp; Review Panel</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-AC-05, FR-TK-06</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">client/src/views/TicketDetailView.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">pnpm --filter client test tests/TicketDetailView.test.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-6/6.4-ticket-ui.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Frontend Eng</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-06</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Precision Console Frontend</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-06.5</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Analytics &amp; KPI Cards UI</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-06.5.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Parameterized Support Analytics Dashboard</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-AN-01 to FR-AN-04</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">client/src/views/AnalyticsView.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">pnpm --filter client test tests/AnalyticsView.test.tsx</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-6/6.5-analytics-ui.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Frontend Eng</Data></Cell>
+   </Row>
+
+   <!-- Phase 7 (.NET) -->
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-07</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Continuous Evals &amp; CI Gates</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-07.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Evaluation Dataset &amp; Runner</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-07.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">70-Case AI Benchmark Runner in .NET</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-EV-01 to FR-EV-05</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">tests/SupportIQ.Evaluations/Runner/BenchmarkRunner.cs</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.Evaluations/</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-7/7.1-evaluation-benchmark-report.json</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI QA Lead</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-07</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Continuous Evals &amp; CI Gates</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-07.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Evidence Aggregation &amp; Quality Gates</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-07.2.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Automated Evidence Verification &amp; CI Gate</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-EV-06, FR-OP-08</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">scripts/Verify-QualityGates.ps1, .github/workflows/ci.yml</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test tests/SupportIQ.IntegrationTests/ --filter QualityGateTests</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-7/7.2-quality-gate-verification.log</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Not Started</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">DevOps / QA</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+
+ <!-- Sheet 2: Requirements Traceability Matrix -->
+ <Worksheet ss:Name="Requirements_Traceability">
+  <Table ss:DefaultRowHeight="22">
+   <Column ss:Width="100"/>
+   <Column ss:Width="130"/>
+   <Column ss:Width="360"/>
+   <Column ss:Width="80"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="320"/>
+   <Column ss:Width="110"/>
+   
+   <Row ss:Height="28">
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Requirement ID</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Category</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Requirement Summary</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Phase ID</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Task Ref</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Verification Method &amp; Target</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Compliance Status</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-CA-01</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Assistant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Users can start a conversation and submit natural-language queries</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-03</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-03.3.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">POST /api/chat/messages endpoint with session state</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-CA-02</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Assistant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Retrieval returns ONLY knowledge chunks authorized for the user's tenant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-03</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-03.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Zero cross-tenant chunk leakage in hybrid retrieval</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-CA-03</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Assistant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Responses must be grounded in retrieved content, citing source and excerpt</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-03</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-03.2.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Faithfulness >= 95%, Citation Precision = 100%</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-CA-04</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AI Assistant</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Explicit abstention when evidence is insufficient with standard phrasing</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-03</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-03.2.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Abstention Accuracy = 100% on 10 no-answer cases</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-KB-01</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Knowledge Base</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Upload support for PDF, DOCX, TXT; reject unsupported or oversized files</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-02</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-02.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Magic bytes validation &amp; 15MB size filter</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-KB-06</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Knowledge Base</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Reprocessing/reindexing purges stale index entries from search availability</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-02</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-02.4.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">POST /api/knowledge/documents/{id}/reindex replaces chunks</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-TK-06</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Ticket Intelligence</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Agents can override AI suggestion; preserve approved values &amp; suggestions</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-04</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-04.3.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TicketAIResults persists both AI &amp; final human values</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-AC-06</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Agent Copilot</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">The system MUST NOT send customer-facing messages automatically</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-04</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-04.3.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Zero background dispatch triggers; manual accept only</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-WF-01</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Workflow Automation</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Allowlisted tools: knowledge_search, ticket_lookup, customer_lookup</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-05</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-05.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">ToolRegistry checks and non-allowlist exception rejection</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">FR-EV-05</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Evaluation Gates</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">70-case suite: 50 Grounding, 10 Abstention, 10 Injection cases</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">PH-07</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TSK-07.1.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">.NET xUnit runner generating JSON evidence report</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+
+ <!-- Sheet 3: Evidence Ledger -->
+ <Worksheet ss:Name="Evidence_Ledger">
+  <Table ss:DefaultRowHeight="22">
+   <Column ss:Width="100"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="260"/>
+   <Column ss:Width="280"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="110"/>
+   <Column ss:Width="160"/>
+   
+   <Row ss:Height="28">
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Evidence ID</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Sub-Phase ID</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Target Artifact File Path</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Expected Evidence Content</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Generation Trigger</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Validation Result</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Reviewed By</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EVD-01.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-01.1</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-1/1.1-solution-scaffold.log</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Solution build &amp; project references test verification</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Step 4 Task 1.1.1</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Unverified</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EVD-01.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-01.2</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-1/1.2-tenant-isolation.log</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EF Core Global Query Filter isolation assertion logs</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Step 4 Task 1.2.2</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Unverified</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EVD-02.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-02.1</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-2/2.1-document-validation.log</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Magic bytes rejection &amp; MIME validation test suite log</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Step 4 Task 2.1.1</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Unverified</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EVD-03.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-03.1</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-3/3.1-hybrid-retrieval.log</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Hybrid search RRF scores &amp; tenant isolation proofs</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Step 4 Task 3.1.1</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Unverified</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EVD-03.2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-03.2</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-3/3.2-grounding-abstention.log</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Exact match on standard abstention phrasing &amp; citations</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Step 4 Task 3.2.1</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Unverified</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EVD-04.3</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-04.3</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-4/4.3-copilot-review.log</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Human review override and suggestion preservation payload</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Step 4 Task 4.3.1</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Unverified</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EVD-05.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-05.1</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-5/5.1-sandboxed-tools.log</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Non-allowlisted tool execution rejection &amp; safe exit log</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Step 4 Task 5.1.1</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Unverified</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">EVD-07.1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">SP-07.1</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/phase-7/7.1-evaluation-benchmark-report.json</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Complete 70-case benchmark metrics run and threshold check</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Step 4 Task 7.1.1</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Unverified</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+
+ <!-- Sheet 4: DoD and Quality Gates -->
+ <Worksheet ss:Name="DoD_Quality_Gates">
+  <Table ss:DefaultRowHeight="24">
+   <Column ss:Width="60"/>
+   <Column ss:Width="220"/>
+   <Column ss:Width="320"/>
+   <Column ss:Width="260"/>
+   <Column ss:Width="110"/>
+   
+   <Row ss:Height="28">
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Gate #</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Definition of Done Criterion</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Target Acceptance Metric / Standard</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Enforcement Script / Location</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Gate Status</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TDD Verification</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">100% test pass rate; tests written before implementation</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">dotnet test SupportIQ.sln</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Tenant Scoping Confirmed</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Zero cross-tenant leakage across EF Core queries &amp; vector search</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">tests/SupportIQ.IntegrationTests/Persistence/TenantIsolationTests.cs</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Citation &amp; Abstention Fidelity</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Citation Precision: 100%, Abstention Accuracy: 100%</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">tests/SupportIQ.Evaluations/Evaluators/AbstentionEvaluator.cs</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Schema Validation</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">All API payloads and model outputs pass strict FluentValidation</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">src/SupportIQ.Application/Common/Behaviours/</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Zero Secrets</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Zero private keys, tokens, or credentials committed</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">.github/workflows/ci.yml (gitleaks / secret scan)</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Adversarial Defense</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Prompt Injection Defense Rate: 100% on 10 attack vectors</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">tests/SupportIQ.Evaluations/Evaluators/InjectionEvaluator.cs</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Evidence Integrity</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">All 7 sub-phase evidence logs present and valid in evidence/</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">scripts/Verify-QualityGates.ps1</Data></Cell>
+    <Cell ss:StyleID="StatusNotStarted"><Data ss:Type="String">Pending</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+
+ <!-- Sheet 5: Change Evidence Register -->
+ <Worksheet ss:Name="Change_Evidence_Register">
+  <Table ss:DefaultRowHeight="22">
+   <Column ss:Width="95"/>
+   <Column ss:Width="110"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="80"/>
+   <Column ss:Width="300"/>
+   <Column ss:Width="300"/>
+   <Column ss:Width="100"/>
+   
+   <Row ss:Height="28">
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Change ID</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Date (UTC)</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Phase Ref</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Scope / Component</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Action</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Target Files</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Verification &amp; Evidence Artifact</Data></Cell>
+    <Cell ss:StyleID="HeaderStyle"><Data ss:Type="String">Status</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">CHG-001</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">2026-11-11</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Foundation</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Core Requirements</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Created</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">docs/PRD.md, PRODUCT.md, GLOSSARY.md</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">PRD normalized from original Word specification</Data></Cell>
+    <Cell ss:StyleID="StatusVerified"><Data ss:Type="String">Verified</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">CHG-002</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">2026-11-11</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Architecture</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">.NET 10 Implementation Plan</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Created</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">docs/superpowers/plans/2026-11-11-supportiq-platform-implementation.md</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">7-Phase TDD implementation plan with .NET Clean Architecture</Data></Cell>
+    <Cell ss:StyleID="StatusVerified"><Data ss:Type="String">Verified</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">CHG-003</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">2026-11-11</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Project Tracking</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Excel Tracking Workbook</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Created</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">docs/tracking/SupportIQ_Implementation_Tracker.xml</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">SpreadsheetML 5-sheet workbook with formatting &amp; styles</Data></Cell>
+    <Cell ss:StyleID="StatusVerified"><Data ss:Type="String">Verified</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">CHG-004</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">2026-11-11</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Project Tracking</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Universal CSV Tracker</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Created</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">docs/tracking/SupportIQ_Implementation_Tracker.csv</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">Comma-delimited tracker for Jira / Notion / Sheets</Data></Cell>
+    <Cell ss:StyleID="StatusVerified"><Data ss:Type="String">Verified</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">CHG-005</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">2026-11-11</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Quality &amp; Audit</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Evidence Framework</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Created</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/README.md, evidence/phase-*</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">Phase 1–7 directory structure and verification rules</Data></Cell>
+    <Cell ss:StyleID="StatusVerified"><Data ss:Type="String">Verified</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">CHG-006</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">2026-11-11</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Governance</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Changes Evidence Ledger</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Created</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">evidence/CHANGES_EVIDENCE_REGISTER.md</Data></Cell>
+    <Cell ss:StyleID="CodeText"><Data ss:Type="String">Persistent change tracking and audit trail log</Data></Cell>
+    <Cell ss:StyleID="StatusVerified"><Data ss:Type="String">Active</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+</Workbook>
