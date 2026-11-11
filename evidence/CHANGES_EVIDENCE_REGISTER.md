@@ -16,6 +16,7 @@
 | **`CHG-005`** | 2026-11-11 | Quality & Audit | Evidence Framework | Created | `evidence/README.md`, `evidence/phase-*` | Phase 1–7 directory structure and verification rules | **Verified** |
 | **`CHG-006`** | 2026-11-11 | Governance | Changes Evidence Ledger | Created | `evidence/CHANGES_EVIDENCE_REGISTER.md` | Persistent change tracking and audit trail log | **Active** |
 | **`CHG-007`** | 2026-11-11 | Version Control | Git Repository Initialization | Initialized | `.git/` | `git init` executed successfully (Exit Code: 0) | **Verified** |
+| **`CHG-008`** | 2026-11-11 | Version Control | Initial Commit (`bb7b8ca`) | Committed | 465 files | `git commit` root commit created on branch master | **Verified** |
 
 ---
 
@@ -94,6 +95,18 @@
   - `.git/`
 - **Verification Command**: `git init`
 - **Verification Proof**: Command exited with code 0 (`Initialized empty Git repository in D:/Scalable Work/SupportIQDemoV2/.git/`).
+
+---
+
+### `CHG-008`: Initial Root Git Commit
+- **Timestamp**: `2026-11-11T18:26:27+05:30`
+- **Author**: Nitin Ingle
+- **Commit Hash**: `bb7b8ca`
+- **Phase**: Version Control & Infrastructure
+- **Description**: Initial root commit tracking all core assets, specifications, 7-phase .NET 10 implementation plan, Excel tracking workbook, CSV trackers, and evidence framework.
+- **Affected Files**: 465 files (76,870 insertions)
+- **Verification Command**: `git log -1 --stat`
+- **Verification Proof**: Commit `bb7b8ca` on branch `master`.
 
 ---
 
